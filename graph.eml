@@ -3,7 +3,4 @@
 	<output-test url="file://$MODULE_DIR$/out/test/graph"/>
 	<exclude-output/>
 	<contentEntry url="file://$MODULE_DIR$"/>
-	<levels>
-		<level name="org.jgrapht:jgrapht-core:1.3.1" value="project"/>
-	</levels>
 </component>
