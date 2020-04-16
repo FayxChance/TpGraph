@@ -82,19 +82,23 @@ public class Graph {
     public ArrayList<Node> recherchePokemon(){
         ArrayList<Node> nodePokemon=new ArrayList<Node>();
         for (Node node : nodes) {
-            ArrayList<Node> noeudsPossible=node.getAdjacentNodes().get("skos:broader");
+            ArrayList<Node> noeudsPossible=node.getAdjacentNodes().get("rdf:type");
             if(noeudsPossible !=null){
                 for (Node nodePossible : noeudsPossible) {
-                    if(nodePossible.getAdjacentNodes().get("skos:broader").get(0).getName()=="Pokemon")
+                    System.out.println(nodePossible.getName());
+
+                    if(nodePossible.getName()=="Sauvage" || nodePossible.getName()=="Legendaire" || nodePossible.getName()=="Mega")
                         nodePokemon.add(node);
                 }
             }
         }
         return nodePokemon;
     }
-    public void afficheListePokemon(ArrayList<Node> list){
+    public void afficheListePokemon(){
+        ArrayList<Node> list =recherchePokemon();
+        System.out.println(list.size());
         for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i).getId() + " - " + list.get());
+            System.out.println(list.get(i).getId() + " - " + list.get(i).getAdjacentNodes().get("foaf:name").get(0).getName());
         }
     }
 }

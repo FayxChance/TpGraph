@@ -177,6 +177,6 @@ public class Knowledge {
         System.out.println("Execution time in milliseconds : " +
                 timeElapsed / 1000000);
         graph.rechercheType();
-
+        graph.afficheListePokemon();
     }
 }
