@@ -156,6 +156,8 @@ public class Knowledge {
         graph.addNode(nodePokeSauvage);
         graph.addNode(nodePokePokemon);
 
+        System.out.println(nodeSalameche.toString());
+        System.out.println(nodeDracaufeu.toString());
 
 
 

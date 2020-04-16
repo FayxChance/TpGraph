@@ -65,4 +65,28 @@ public class Node {
         }
         return res;
     }
+    
+    public int getIndiceRarete(Node n) {
+    	for(int i = 0; i<this.adjacentNodes.get("rdf:type").size(); i++) {
+    		if(this.adjacentNodes.get("rdf:type").get(i).getName() == "Sauvage" || this.adjacentNodes.get("rdf:type").get(i).getName() == "Legendaire") {
+    			return i;
+    		}
+    	}
+    	return -1;
+    }
+    
+    public String toString() {
+    	int indiceRarete = getIndiceRarete(this); 
+    	String res = "";
+    	res = "Nom du pokemon : " + this.adjacentNodes.get("foaf:name").get(0).getName();
+    	res = res + "\ntype : ";
+    	for(int i = 0; i<this.adjacentNodes.get("rdf:type").size(); i++) {
+    		if(i != indiceRarete) {
+    			res = res + this.adjacentNodes.get("rdf:type").get(i).getName() + (((i<indiceRarete && i+1==this.adjacentNodes.get("rdf:type").size()-1)||
+    					(i>indiceRarete && i==this.adjacentNodes.get("rdf:type").size()-1))?"":"/");
+    		}
+    	}
+    	res = res + "\nRarete : " + this.adjacentNodes.get("rdf:type").get(indiceRarete).getName() + "\n";
+    	return res;
+    }
 }
