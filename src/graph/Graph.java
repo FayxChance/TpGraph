@@ -2,10 +2,7 @@ package graph;
 
 import in.keyboard.Keyboard;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.LinkedList;
+import java.util.*;
 
 public class Graph {
 
@@ -100,5 +97,16 @@ public class Graph {
         for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i).getId() + " - " + list.get(i).getAdjacentNodes().get("foaf:name").get(0).getName());
         }
+    }
+
+    public Node getNodeById(int id ){
+        Iterator<Node> i=nodes.iterator();
+        while(i.hasNext()){
+            Node n=i.next();
+            if(n.getId()==id){
+                return n;
+            }
+        }
+        return null;
     }
 }

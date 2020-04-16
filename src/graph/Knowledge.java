@@ -2,6 +2,8 @@ package graph;
 import in.keyboard.*;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
+import in.keyboard.*;
+
 public class Knowledge {
     public static void main(String[] args) {
         Node nodeSalameche = new Node("nodeSalameche",null,1);
@@ -168,7 +170,7 @@ public class Knowledge {
         graph.addNode(nodePokePokemon);
 
     /*    System.out.println(nodeSalameche.toString());
-        System.out.println(nodeDracaufeu.toString());*/
+        System.out.println(nodeDracaufeu.toString());
         long startTime = System.nanoTime();
         graph.rechercheEvolution(nodeCarapuce);
         graph.rechercheSeeAlso(nodeSalameche);
@@ -177,6 +179,40 @@ public class Knowledge {
         System.out.println("Execution time in milliseconds : " +
                 timeElapsed / 1000000);
         graph.rechercheType();
-        graph.afficheListePokemon();
+        graph.afficheListePokemon();*/
+        int choix;
+        boolean fini=false;
+        while (!fini){
+            afficheMenu();
+            choix = saisieMenu();
+            traitementChoix(choix,fini);
+        }
+    }
+
+    private static void traitementChoix(int choix,boolean fini) {
+        switch (choix){
+            case 0:fini=true;break;
+            case 1:
+        }
+    }
+
+    private static int saisieMenu() {
+        int choix;
+        System.out.println("Veuillez entrer un choix entre 0 et 3");
+        choix = in.keyboard.Keyboard.getInt();
+        while(choix<0 && choix >4){
+            System.out.println("Veuillez entrer un choix valide entre 0 et 3");
+            choix = in.keyboard.Keyboard.getInt();
+        }
+        return choix;
+    }
+
+    private static void afficheMenu() {
+        System.out.println("Veuillez choisir une demande sur le graphe : ");
+        System.out.println("1 - Lister tous les types de pokémons");
+        System.out.println("2 - Lister les pokémons en relation avec un autre ");
+        System.out.println("3 - Lister toutes les évolutions d'un pokémon ");
+        System.out.println("0 - Pour quitter");
+
     }
 }
