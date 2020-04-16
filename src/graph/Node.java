@@ -61,7 +61,8 @@ public class Node {
     
     public int getIndiceRarete(Node n) {
     	for(int i = 0; i<this.adjacentNodes.get("rdf:type").size(); i++) {
-    		if(this.adjacentNodes.get("rdf:type").get(i).getName() == "Sauvage" || this.adjacentNodes.get("rdf:type").get(i).getName() == "Legendaire") {
+    		if(this.adjacentNodes.get("rdf:type").get(i).getName() == "Sauvage" || this.adjacentNodes.get("rdf:type").get(i).getName() == "Legendaire" ||
+                    this.adjacentNodes.get("rdf:type").get(i).getName() == "Mega"){
     			return i;
     		}
     	}

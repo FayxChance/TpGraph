@@ -1,5 +1,7 @@
 package graph;
 
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 public class Knowledge {
     public static void main(String[] args) {
         Node nodeSalameche = new Node("nodeSalameche",null,1);
@@ -18,6 +20,7 @@ public class Knowledge {
         Node nodePokePokemon = new Node("Pokemon","poke");
         Node nodePokeSauvage = new Node("Sauvage", "poke");
         Node nodePokeLegendaire = new Node("Legendaire", "poke");
+        Node nodePokeMega = new Node("Mega", "poke");
         Node nodePokeTypePoke = new Node("TypePoke","poke");
         Node nodePokeTypePokeFeu = new Node("Feu","poke");
         Node nodePokeTypePokeVol = new Node("Vol","poke");
@@ -43,6 +46,7 @@ public class Knowledge {
         nodeSalameche.addDestination(nodeReptincelle,"rdfs:seeAlso");
         nodeSalameche.addDestination(nodePokeSauvage,"rdf:type");
         nodeSalameche.addDestination(nodeDracaufeu,"rdfs:seeAlso");
+        nodeSalameche.addDestination(nodeCarapuce,"rdfs:seeAlso");
         //Reptincelle
         nodeReptincelle.addDestination(nodeFoafReptincelleName,"foaf:name");
         nodeReptincelle.addDestination(nodePokeSauvage,"rdf:type");
@@ -57,20 +61,24 @@ public class Knowledge {
         nodeDracaufeu.addDestination(nodeSalameche,"rdfs:seeAlso");
         nodeDracaufeu.addDestination(nodeDracaufeuX,"rdfs:seeAlso");
         nodeDracaufeu.addDestination(nodeDracaufeuY,"rdfs:seeAlso");
-        nodeDracaufeu.addDestination(nodeDracaufeuX,"poke:megaEvolution");
-        nodeDracaufeu.addDestination(nodeDracaufeuY,"poke:megaEvolution");
+        nodeDracaufeu.addDestination(nodeDracaufeuX,"poke:evolution");
+        nodeDracaufeu.addDestination(nodeDracaufeuY,"poke:evolution");
         nodeDracaufeu.addDestination(nodePokeTypePokeFeu,"rdf:type");
         nodeDracaufeu.addDestination(nodePokeTypePokeVol,"rdf:type");
         //DracaufeuY
         nodeDracaufeuY.addDestination(nodeFoafDracaufeuYName,"foaf:name");
         nodeDracaufeuY.addDestination(nodePokeTypePokeFeu,"rdf:type");
         nodeDracaufeuY.addDestination(nodePokeTypePokeVol,"rdf:type");
+        nodeDracaufeuY.addDestination(nodePokeMega,"rdf:type");
         nodeDracaufeuY.addDestination(nodeDracaufeu,"rdfs:seeAlso");
+
         //DracaufeuX
         nodeDracaufeuX.addDestination(nodeFoafDracaufeuXName,"foaf:name");
         nodeDracaufeuX.addDestination(nodePokeTypePokeFeu,"rdf:type");
         nodeDracaufeuX.addDestination(nodePokeTypePokeDragon,"rdf:type");
         nodeDracaufeuX.addDestination(nodeDracaufeu,"rdfs:seeAlso");
+        nodeDracaufeuX.addDestination(nodePokeMega,"rdf:type");
+
         //Carapuce
         nodeCarapuce.addDestination(nodeFoafCarapuceName,"foaf:name");
         nodeCarapuce.addDestination(nodePokeSauvage,"rdf:type");
@@ -92,17 +100,18 @@ public class Knowledge {
         nodeTortank.addDestination(nodeCarabaffe,"rdfs:seeAlso");
         nodeTortank.addDestination(nodeCarapuce,"rdfs:seeAlso");
         nodeTortank.addDestination(nodeTortankMega,"rdfs:seeAlso");
-        nodeTortank.addDestination(nodeTortankMega,"poke:megaEvolution");
+        nodeTortank.addDestination(nodeTortankMega,"poke:evolution");
         nodeTortank.addDestination(nodePokeTypePokeEau,"rdf:type");
         //Mega-Tortank
         nodeTortankMega.addDestination(nodeFoafTortankMegaName,"foaf:name");
         nodeTortankMega.addDestination(nodeTortank,"rdfs:seeAlso");
         nodeTortankMega.addDestination(nodePokeTypePokeEau,"rdf:type");
+        nodeTortankMega.addDestination(nodePokeMega,"rdf:type");
+
         //Mew
         nodeMew.addDestination(nodeFoafMewName,"foaf:name");
         nodeMew.addDestination(nodePokeTypePokePsy,"rdf:type");
         nodeMew.addDestination(nodePokeLegendaire,"rdf:type");
-        nodeMew.addDestination(nodeDracaufeu,"rdfs:seeAlso");
 
         //Type
         nodePokeTypePokeFeu.addDestination(nodePokeTypePoke,"skos:broader");
@@ -113,8 +122,10 @@ public class Knowledge {
         nodePokeTypePoke.addDestination(nodeSkosConcept,"rdf:type");
         //Type poké
         nodePokeLegendaire.addDestination(nodePokePokemon,"skos:broader");
+        nodePokeMega.addDestination(nodePokePokemon,"skos:broader");
         nodePokeSauvage.addDestination(nodePokePokemon,"skos:broader");
         nodePokeLegendaire.addDestination(nodeSkosConcept,"rdf:type");
+        nodePokeMega.addDestination(nodeSkosConcept,"rdf:type");
         nodePokeSauvage.addDestination(nodeSkosConcept,"rdf:type");
 
 
@@ -156,12 +167,16 @@ public class Knowledge {
         graph.addNode(nodePokeSauvage);
         graph.addNode(nodePokePokemon);
 
-        System.out.println(nodeSalameche.toString());
-        System.out.println(nodeDracaufeu.toString());
-
-
-
-
+    /*    System.out.println(nodeSalameche.toString());
+        System.out.println(nodeDracaufeu.toString());*/
+        long startTime = System.nanoTime();
+        graph.rechercheEvolution(nodeCarapuce);
+        graph.rechercheSeeAlso(nodeSalameche);
+        long endTime = System.nanoTime();
+        long timeElapsed = endTime - startTime;
+        System.out.println("Execution time in milliseconds : " +
+                timeElapsed / 1000000);
+        graph.rechercheType();
 
     }
 }

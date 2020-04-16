@@ -3,6 +3,7 @@ package graph;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.LinkedList;
 
 public class Graph {
 
@@ -13,25 +14,44 @@ public class Graph {
     }
 
 
-    public void rechercheSeeAlso(ArrayList<Node> visited,Node depart, int step, int max){
-        if(!dejaPresent(visited,depart) && step <= max){
+    public void rechercheSeeAlso(Node depart){
+        /*if(!dejaPresent(visited,depart)){
             visited.add(depart);
-            depart.affichePokemon();
+
+            System.out.println(depart.toString());
+            ArrayList<Node> seeAlsoNode=depart.getAdjacentNodes().get("rdfs:seeAlso");
+            int nbSeeAlsoNode= seeAlsoNode.size();
+            if (step < max) {
+                for (int i = 0; i < nbSeeAlsoNode; i++) {
+                    rechercheSeeAlso(visited,seeAlsoNode.get(i),step+1,max);
+                }
+            }
+        }*/
+        int step=0;
+        ArrayList<Node> visited =  new  ArrayList<Node>();
+        LinkedList<Node> file=new LinkedList<Node>();
+        visited.add(depart);
+        file.add(depart);
+        while (!file.isEmpty() ){
+            depart=file.removeFirst();
+            System.out.println(depart.toString());
             ArrayList<Node> seeAlsoNode=depart.getAdjacentNodes().get("rdfs:seeAlso");
             int nbSeeAlsoNode= seeAlsoNode.size();
             for (int i = 0; i < nbSeeAlsoNode; i++) {
-                rechercheSeeAlso(visited,visited.get(i),step+1,max);
+                if(!visited.contains(seeAlsoNode.get(i))) {
+                    file.add(seeAlsoNode.get(i));
+                    visited.add(seeAlsoNode.get(i));
+                }
             }
+
         }
-        else
-            ;
     }
     public boolean dejaPresent(ArrayList<Node> list,Node n){
         return list.contains(n);
     }
 
     public void rechercheEvolution(Node depart){
-        depart.affichePokemon();
+        System.out.println(depart.toString());
         ArrayList<Node> evolutionNode=depart.getAdjacentNodes().get("poke:evolution");
         if(evolutionNode!=null){
             int nbEvolutionNode= evolutionNode.size();
@@ -47,8 +67,8 @@ public class Graph {
             ArrayList<Node> noeudsPossible=node.getAdjacentNodes().get("skos:broader");
             if(noeudsPossible !=null){
                 for (Node nodePossible : noeudsPossible) {
-                    if(nodePossible.getAdjacentNodes().get("skos:broader").get(0).getName()=="TypePoke")
-                        nodeType.add(nodePossible);
+                    if(nodePossible.getName()=="TypePoke")
+                        nodeType.add(node);
                 }
             }
         }
