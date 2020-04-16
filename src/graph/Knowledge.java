@@ -170,7 +170,7 @@ public class Knowledge {
         graph.addNode(nodePokePokemon);
 
     /*    System.out.println(nodeSalameche.toString());
-        System.out.println(nodeDracaufeu.toString());
+        System.out.println(nodeDracaufeu.toString());*/
         long startTime = System.nanoTime();
         graph.rechercheEvolution(nodeCarapuce);
         graph.rechercheSeeAlso(nodeSalameche);
@@ -178,16 +178,49 @@ public class Knowledge {
         long timeElapsed = endTime - startTime;
         System.out.println("Execution time in milliseconds : " +
                 timeElapsed / 1000000);
-        graph.rechercheType();
-        graph.afficheListePokemon();*/
+        graph.rechercheType();*/
+        
         int choix;
-        boolean fini=false;
-        while (!fini){
-            afficheMenu();
-            choix = saisieMenu();
-            traitementChoix(choix,fini);
+        int choixIDPokemon;
+        boolean fini = false;
+        while(!fini) {
+	        System.out.println("1- Affichier les relations d'un pokemon avec les autres pokemon\n");
+	        System.out.println("2- Afficher les evolutions d'un pokemon\n");
+	        System.out.println("3- Afficher tout les type de pokemon\n");
+	        System.out.println("4- Quitter\n");
+	        System.out.println("Veuillez saisir votre choix : ");
+	        choix = Keyboard.getInt();
+	        System.out.println("\n");
+	        switch(choix) {
+	        case 1 :
+	        	graph.afficherListePokemon();
+	        	System.out.println("\nVeuillez saisir l'ID du pokemon souhaite : ");
+	        	choixIDPokemon = Keyboard.getInt();
+	        	while(choixIDPokemon < 1 || choixIDPokemon > graph.recherchePokemon().size) {
+	        		System.out.println("\nID de pokemon incorrect, veuillez en saisir un a nouveau : ");
+	        	}
+	        	System.out.println("\n");
+	        	graph.rechercheSeeAlso(graph.getNodeById(choixIDPokemon));
+	        	break;
+	        case 2 :
+	        	graph.afficherListePokemon();
+	        	System.out.println("\nVeuillez saisir l'ID du pokemon souhaite : ");
+	        	choixIDPokemon = Keyboard.getInt();
+	        	while(choixIDPokemon < 1 || choixIDPokemon > graph.recherchePokemon().size) {
+	        		System.out.println("\nID de pokemon incorrect, veuillez en saisir un a nouveau : ");
+	        	}
+	        	System.out.println("\n");
+	        	graph.rechercheEvolution(graph.getNodeById(choixIDPokemon));
+	        	break;
+	        case 3:
+	        	graph.rechercheType();
+	        	break;
+	        case 4:
+	        	fini = true;
+	        	break;
+	        }
         }
-    }
+        
 
     private static void traitementChoix(int choix,boolean fini) {
         switch (choix){
