@@ -2,15 +2,15 @@ package graph;
 
 public class Knowledge {
     public static void main(String[] args) {
-        Node nodeSalameche = new Node("Salameche",null,1);
-        Node nodeDracaufeu = new Node("Dracaufeu",null,3);
-        Node nodeReptincelle = new Node("Reptincelle",null,2);
-        Node nodeDracaufeuY = new Node("DracaufeuY",null,4);
-        Node nodeDracaufeuX = new Node("DracaufeuX",null,5);
-        Node nodeCarapuce = new Node("Carapuce",null,6);
-        Node nodeCarabaffe = new Node("Carabaffe",null,7);
-        Node nodeTortank = new Node("Tortank",null,8);
-        Node nodeTortankMega = new Node("Mega Tortank",null,9);
+        Node nodeSalameche = new Node("nodeSalameche",null,1);
+        Node nodeDracaufeu = new Node("nodeDracaufeu",null,3);
+        Node nodeReptincelle = new Node("nodeReptincelle",null,2);
+        Node nodeDracaufeuY = new Node("nodeDracaufeuY",null,4);
+        Node nodeDracaufeuX = new Node("nodeDracaufeuX",null,5);
+        Node nodeCarapuce = new Node("nodeCarapuce",null,6);
+        Node nodeCarabaffe = new Node("nodeCarabaffe",null,7);
+        Node nodeTortank = new Node("nodeTortank",null,8);
+        Node nodeTortankMega = new Node("nodeMegaTortank",null,9);
         Node nodeMew = new Node("Mew",null,10);
 
         Node nodeSkosConcept = new Node("Concept","skos");

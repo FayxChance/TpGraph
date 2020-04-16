@@ -9,7 +9,7 @@ public class Node {
     private String prefixe;
     private String name;
     private int id;
-    Map<String, List<Node>> adjacentNodes = new HashMap<String, List<Node>>();
+    private Map<String, ArrayList<Node>> adjacentNodes = new HashMap<String, ArrayList<Node>>();
 
     public void addDestination(Node destination, String relation) {
         if (adjacentNodes.get(relation)==null)
@@ -46,11 +46,11 @@ public class Node {
         this.id = id;
     }
 
-    public Map<String, List<Node>> getAdjacentNodes() {
+    public Map<String, ArrayList<Node>> getAdjacentNodes() {
         return adjacentNodes;
     }
 
-    public void setAdjacentNodes(Map<String, List<Node>> adjacentNodes) {
+    public void setAdjacentNodes(Map<String, ArrayList<Node>> adjacentNodes) {
         this.adjacentNodes = adjacentNodes;
     }
 
@@ -58,11 +58,4 @@ public class Node {
         this.prefixe = prefixe;
     }
 
-    public boolean isAdjacent(String prefixe, String name){
-        boolean res=false;
-        if (adjacentNodes.get(prefixe)!=null){
-
-        }
-        return res;
-    }
 }
