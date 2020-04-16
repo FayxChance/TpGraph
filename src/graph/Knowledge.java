@@ -183,9 +183,9 @@ public class Knowledge {
         int choixIDPokemon;
         boolean fini = false;
         while (!fini) {
-            System.out.println("1- Affichier les relations d'un pokemon avec les autres pokemon\n");
+            System.out.println("1- Afficher les relations d'un pokemon avec les autres pokemons\n");
             System.out.println("2- Afficher les evolutions d'un pokemon\n");
-            System.out.println("3- Afficher tout les type de pokemon\n");
+            System.out.println("3- Afficher tous les types de pokemons\n");
             System.out.println("4- Quitter\n");
             System.out.println("Veuillez saisir votre choix : ");
             choix = Keyboard.getInt();
