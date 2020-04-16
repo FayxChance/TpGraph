@@ -1,5 +1,7 @@
 package graph;
 
+import in.keyboard.Keyboard;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -75,6 +77,24 @@ public class Graph {
         System.out.println("Voici la liste des types :");
         for (int i = 0; i < nodeType.size(); i++) {
             System.out.println(nodeType.get(i).getName());
+        }
+    }
+    public ArrayList<Node> recherchePokemon(){
+        ArrayList<Node> nodePokemon=new ArrayList<Node>();
+        for (Node node : nodes) {
+            ArrayList<Node> noeudsPossible=node.getAdjacentNodes().get("skos:broader");
+            if(noeudsPossible !=null){
+                for (Node nodePossible : noeudsPossible) {
+                    if(nodePossible.getAdjacentNodes().get("skos:broader").get(0).getName()=="Pokemon")
+                        nodePokemon.add(node);
+                }
+            }
+        }
+        return nodePokemon;
+    }
+    public void afficheListePokemon(ArrayList<Node> list){
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i).getId() + " - " + list.get());
         }
     }
 }
