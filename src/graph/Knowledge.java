@@ -196,7 +196,7 @@ public class Knowledge {
                     System.out.println("\nVeuillez saisir l'ID du pokemon souhaite : ");
                     choixIDPokemon = Keyboard.getInt();
                     while (choixIDPokemon < 1 || choixIDPokemon > graph.recherchePokemon().size()) {
-                        System.out.println("\nID de pokemon incorrect, veuillez en saisir un a nouveau : ");
+                        System.out.println("\nID de pokemon incorrect, veuillez en saisir un nouveau : ");
                         choixIDPokemon = Keyboard.getInt();
                     }
                     System.out.println("\n");
