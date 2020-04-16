@@ -35,11 +35,13 @@ public class Graph {
             depart=file.removeFirst();
             System.out.println(depart.toString());
             ArrayList<Node> seeAlsoNode=depart.getAdjacentNodes().get("rdfs:seeAlso");
-            int nbSeeAlsoNode= seeAlsoNode.size();
-            for (int i = 0; i < nbSeeAlsoNode; i++) {
-                if(!visited.contains(seeAlsoNode.get(i))) {
-                    file.add(seeAlsoNode.get(i));
-                    visited.add(seeAlsoNode.get(i));
+            if (seeAlsoNode!=null){
+                int nbSeeAlsoNode= seeAlsoNode.size();
+                for (int i = 0; i < nbSeeAlsoNode; i++) {
+                    if(!visited.contains(seeAlsoNode.get(i))) {
+                        file.add(seeAlsoNode.get(i));
+                        visited.add(seeAlsoNode.get(i));
+                    }
                 }
             }
 
@@ -82,8 +84,6 @@ public class Graph {
             ArrayList<Node> noeudsPossible=node.getAdjacentNodes().get("rdf:type");
             if(noeudsPossible !=null){
                 for (Node nodePossible : noeudsPossible) {
-                    System.out.println(nodePossible.getName());
-
                     if(nodePossible.getName()=="Sauvage" || nodePossible.getName()=="Legendaire" || nodePossible.getName()=="Mega")
                         nodePokemon.add(node);
                 }
@@ -93,7 +93,6 @@ public class Graph {
     }
     public void afficheListePokemon(){
         ArrayList<Node> list =recherchePokemon();
-        System.out.println(list.size());
         for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i).getId() + " - " + list.get(i).getAdjacentNodes().get("foaf:name").get(0).getName());
         }
