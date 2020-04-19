@@ -26,7 +26,6 @@ public class Graph {
                 }
             }
         }*/
-        int step=0;
         ArrayList<Node> visited =  new  ArrayList<Node>();
         LinkedList<Node> file=new LinkedList<Node>();
         visited.add(depart);

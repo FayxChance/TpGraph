@@ -85,6 +85,7 @@ public class Knowledge {
         nodeCarapuce.addDestination(nodeFoafCarapuceName, "foaf:name");
         nodeCarapuce.addDestination(nodePokeSauvage, "rdf:type");
         nodeCarapuce.addDestination(nodeCarabaffe, "rdfs:seeAlso");
+        nodeCarapuce.addDestination(nodeSalameche, "rdfs:seeAlso");
         nodeCarapuce.addDestination(nodeTortank, "rdfs:seeAlso");
         nodeCarapuce.addDestination(nodePokeTypePokeEau, "rdf:type");
         nodeCarapuce.addDestination(nodeCarabaffe, "poke:evolution");
@@ -178,6 +179,8 @@ public class Knowledge {
         System.out.println("Execution time in milliseconds : " +
                 timeElapsed / 1000000);
         graph.rechercheType();*/
+        long startTime;
+        long endTime;
 
         int choix;
         int choixIDPokemon;
@@ -200,7 +203,10 @@ public class Knowledge {
                         choixIDPokemon = Keyboard.getInt();
                     }
                     System.out.println("\n");
+                    startTime=System.nanoTime();
                     graph.rechercheSeeAlso(graph.getNodeById(choixIDPokemon));
+                    endTime=System.nanoTime();
+                    System.out.println("\nLe parcours a mis " + (endTime - startTime)/1000000 + " ms.\n");
                     break;
                 case 2:
                     graph.afficheListePokemon();
@@ -211,10 +217,16 @@ public class Knowledge {
                         choixIDPokemon = Keyboard.getInt();
                     }
                     System.out.println("\n");
+                    startTime=System.nanoTime();
                     graph.rechercheEvolution(graph.getNodeById(choixIDPokemon));
+                    endTime=System.nanoTime();
+                    System.out.println("\nLe parcours a mis " + (endTime - startTime)/1000000 + " ms.\n");
                     break;
                 case 3:
+                    startTime=System.nanoTime();
                     graph.rechercheType();
+                    endTime=System.nanoTime();
+                    System.out.println("\nLe parcours a mis " + (endTime - startTime)/1000000 + " ms.\n");
                     break;
                 case 4:
                     fini = true;
